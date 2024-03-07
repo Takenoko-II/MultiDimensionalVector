@@ -223,92 +223,168 @@ round(): MultiDimensionalVector;
 ```
 
 #### abs
-各成分をその絶対値にしたベクトルを返します。
+各成分をその絶対値にしたベクトルを返します
 ```ts
 abs(): MultiDimensionalVector;
 ```
 
 #### fill
-各成分を指定の値にしたベクトルを返します。
+各成分を指定の値にしたベクトルを返します
 - value 任意の値
 ```ts
 fill(value: number): MultiDimensionalVector;
 ```
 
 #### dot
-別のベクトルとの内積を求めます。
+別のベクトルとの内積を求めます
 - other ベクトル
 ```ts
 dot(other: Vector2 | Vector3): number;
 ```
-    /**
-     * 別のベクトルとの外積を求めます。
-     * @param other ベクトル
-     */
-    cross(other: Vector3): MultiDimensionalVector;
 
-    /**
-     * このベクトルの別のベクトルへの射影ベクトルを求めます。
-     * @param other ベクトル
-     */
-    projection(other: Vector2 | Vector3): MultiDimensionalVector;
+#### cross
+別のベクトルとの外積を求めます
+- other ベクトル
+```ts
+cross(other: Vector3): MultiDimensionalVector;
+```
 
-    /**
-     * このベクトルの別のベクトルからの反射影ベクトルを求めます。
-     * @param other ベクトル
-     */
-    rejection(other: Vector2 | Vector3): MultiDimensionalVector;
+#### projection
+このベクトルの別のベクトルへの射影ベクトルを求めます
+- other ベクトル
+```ts
+projection(other: Vector2 | Vector3): MultiDimensionalVector;
+```
 
-    /**
-     * endを終了位置とし、tを割合とした線形補間を返します。
-     * @param end 終了位置
-     * @param t 割合
-     */
-    lerp(end: Vector2 | Vector3, t: number): MultiDimensionalVector;
+#### rejection
+このベクトルの別のベクトルからの反射影ベクトルを求めます
+- other ベクトル
+```ts
+rejection(other: Vector2 | Vector3): MultiDimensionalVector;
+```
 
-    /**
-     * endを終了位置とし、sを割合とした球面線形補間を返します。
-     * @param end 終了位置
-     * @param s 割合
-     */
-    slerp(end: Vector2 | Vector3, s: number): MultiDimensionalVector;
+#### lerp
+endを終了位置とし、tを割合とした線形補間を返します
+- end 終了位置
+- t 割合
+```ts
+lerp(end: Vector2 | Vector3, t: number): MultiDimensionalVector;
+```
 
-    /**
-     * 自身と成分の各値が同じベクトルを返します。
-     */
-    clone(): MultiDimensionalVector;
+#### slerp
+endを終了位置とし、sを割合とした球面線形補間を返します
+- end 終了位置
+- s 割合
+```ts
+slerp(end: Vector2 | Vector3, s: number): MultiDimensionalVector;
+```
 
-    /**
-     * 自身をローカル座標のz成分とし、ローカル座標の各成分となる座標を取得します。
-     */
-    getLocalAxes(): LocalAxes;
+#### clone
+自身と成分の各値が同じベクトルを返します
+```ts
+clone(): MultiDimensionalVector;
+```
 
-    /**
-     * 成分の各値を格納した配列を返します。
-     */
-    toArray(): [number, number] | [number, number, number];
+#### getLocalAxes
+自身をローカル座標のz成分とし、ローカル座標の各成分となる座標を取得します
+```ts
+getLocalAxes(): LocalAxes;
+```
 
-    /**
-     * 与えられた関数をベクトルの各成分に対して呼び出し、その結果から新しいベクトルを作成します。
-     * @param callbackFn 各成分に対して実行する関数
-     */
-    map(callbackFn: (component: number, key: "x" | "y" | "z") => number): MultiDimensionalVector;
+#### toArray
+成分の各値を格納した配列を返します
+```ts
+toArray(): [number, number] | [number, number, number];
+```
 
-    /**
-     * 与えられた関数をベクトルの各成分に対して呼び出し、その結果から新しいベクトルを作成します。
-     * @param components コールバックに分解されて渡される値
-     * @param callbackFn 各成分に対して実行する関数
-     */
-    calc(components: number | Vector2 | Vector3 | [number, number] | [number, number, number], callbackFn: (a: number, b: number) => number): MultiDimensionalVector;
+#### map
+与えられた関数をベクトルの各成分に対して呼び出し、その結果から新しいベクトルを作成します
+- callbackFn 各成分に対して実行する関数
+```ts
+map(callbackFn: (component: number, key: "x" | "y" | "z") => number): MultiDimensionalVector;
+```
 
-    /**
-     * 配列化したベクトルのreduce関数に与えられた関数を渡します。
-     * @param callbackFn コールバック関数
-     */
-    reduce(callbackFn: (previousValue: number, currentValue: number, currentIndex: number, array: [number, number] | [number, number, number]) => number): number;
+#### calc
+与えられた関数を二つのベクトルの各成分に対して呼び出し、その結果から新しいベクトルを作成します
+- components コールバックに分解されて渡される値
+- callbackFn 各成分に対して実行する関数
+```ts
+calc(components: number | Vector2 | Vector3 | [number, number] | [number, number, number], callbackFn: (a: number, b: number) => number): MultiDimensionalVector;
+```
 
-    /**
-     * ベクトルを文字列化します。
-     * @param format 形式
-     */
-    toString(format?: string): string;
+#### reduce
+配列化したベクトルのreduce関数に与えられた関数を渡します
+- callbackFn コールバック関数
+```ts
+reduce(callbackFn: (previousValue: number, currentValue: number, currentIndex: number, array: [number, number] | [number, number, number]) => number): number;
+```
+
+#### toString
+ベクトルを文字列化します
+- format 形式
+```ts
+toString(format?: string): string;
+```
+
+## VectorDimensionSize
+
+### methods
+
+#### get
+次元の大きさを取得します
+```ts
+get(): number;
+```
+
+#### match
+別のベクトルと次元が一致していた場合trueを返します
+- other ベクトル
+```ts
+match(other: Vector2 | Vector3): boolean;
+```
+
+## LocalAxes
+
+### properties
+
+#### x
+ローカル座標のx成分ベクトル
+```ts
+x: MultiDimensionalVector;
+```
+
+#### y
+ローカル座標のy成分ベクトル
+```ts
+y: MultiDimensionalVector;
+```
+
+#### z
+ローカル座標のz成分ベクトル
+```ts
+z: MultiDimensionalVector;
+```
+
+## CuboidArea
+
+### properties
+
+#### min
+範囲内の最小の座標
+```
+readonly min: MultiDimensionalVector;
+```
+
+#### max
+範囲内の最大の座標
+```
+readonly max: MultiDimensionalVector;
+```
+
+#### length
+直方体の三辺それぞれの長さ
+```
+readonly length: CuboidAreaLength;
+```
+
+### methods
