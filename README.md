@@ -4,19 +4,28 @@
 
 ### properties
 
-- x
+#### x
+x成分
 ```ts
 x: number;
 ```
 
-- y
+#### y
+y成分
 ```ts
 y: number;
 ```
 
-- z
+#### z
+z成分
 ```ts
 z?: number;
+```
+
+#### dimensionSize
+次元の大きさに関する情報
+```ts
+dimensionSize: VectorDimensionSize;
 ```
 
 ### methods
@@ -137,5 +146,26 @@ inverted(): MultiDimensionalVector;
 #### getAngleBetween
 別のベクトルと自身がなす角の大きさを返します
 ```ts
-getAngleBetween(vector: Vector2 | Vector3): number;
+getAngleBetween(other: Vector2 | Vector3): number;
+```
+
+#### getDirectionTo
+特定の座標への方向となる単位ベクトルを返します
+- vector 座標
+```ts
+getDirectionTo(vector: Vector2 | Vector3): MultiDimensionalVector;
+```
+
+#### getDistanceTo
+特定の座標との距離を返します
+- vector 座標
+```ts
+getDistanceTo(vector: Vector2 | Vector3): MultiDimensionalVector;
+```
+
+#### add
+別のベクトルとの足し算を行い、結果となる新しいベクトルを返します
+- addend 足すベクトル
+```ts
+add(addend: number | [number, number] | [number, number, number] | Vector2 | Vector3): MultiDimensionalVector;
 ```
