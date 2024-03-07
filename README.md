@@ -25,7 +25,7 @@ z?: number;
 #### dimensionSize
 次元の大きさに関する情報
 ```ts
-dimensionSize: VectorDimensionSize;
+readonly dimensionSize: VectorDimensionSize;
 ```
 
 ### methods
@@ -161,6 +161,12 @@ getDirectionTo(vector: Vector2 | Vector3): MultiDimensionalVector;
 - vector 座標
 ```ts
 getDistanceTo(vector: Vector2 | Vector3): MultiDimensionalVector;
+```
+
+#### getRotation
+自身の回転を返します
+```ts
+getRotation(): MultiDimensionalVector;
 ```
 
 #### add
