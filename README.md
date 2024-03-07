@@ -418,3 +418,67 @@ constructor(vectorA: Vector3, vectorB: Vector3);
 
 constructor(center: Vector3, length: number);
 ```
+
+#### move
+範囲を大きさを維持したまま移動させます
+ - direction 移動する方向と量
+```ts
+move(direction: Vector3): CuboidArea;
+```
+
+#### isInside
+ 座標が範囲内にあるかどうかを返します
+ - vector ベクトル
+```ts
+isInside(vector: Vector3): boolean;
+```
+
+#### align
+ 範囲の小数点以下を切り捨て・切り上げ、「座標の表示」に合った結果を返すように整形します
+```ts
+align(): CuboidArea;
+```
+
+#### outline
+ 範囲の外枠を取得します
+ - step ベクトル同士の間隔
+```ts
+outline(step?: number): MultiDimensionalVector[];
+```
+
+#### getInsideEntities
+ 範囲内のエンティティをすべて取得します
+ - dimension 参照するディメンション
+ - options エンティティの条件
+```ts
+getInsideEntities(dimension?: Dimension, options?: EntityQueryOptions): Entity[];
+```
+
+#### getInsideBlocks
+ 範囲内のブロックをすべて取得します
+ - dimension 参照するディメンション
+```ts
+getInsideBlocks(dimension?: Dimension): Block[];
+```
+
+## CuboidAreaLength
+
+### properties
+
+#### x
+x軸方向の辺の長さ
+```ts
+readonly x: number;
+```
+
+#### y
+y軸方向の辺の長さ
+```ts
+readonly y: number;
+```
+
+#### z
+z軸方向の辺の長さ
+```ts
+readonly z: number;
+```
