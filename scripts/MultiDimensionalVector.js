@@ -196,15 +196,15 @@ export class MultiDimensionalVector {
         else return false;
     }
 
-    is(vector) {
-        if (!this.dimensionSize.match(vector)) return false;
+    is(other) {
+        if (!this.dimensionSize.match(other)) return false;
 
         if (this.dimensionSize.get() === 2) {
-            if (this.x === vector.x && this.y === vector.y) return true;
+            if (this.x === other.x && this.y === other.y) return true;
             else return false;
         }
         else if (this.dimensionSize.get() === 3) {
-            if (this.x === vector.x && this.y === vector.y && this.z === vector.z) return true;
+            if (this.x === other.x && this.y === other.y && this.z === other.z) return true;
             else return false;
         }
         else return false;

@@ -79,9 +79,9 @@ export class MultiDimensionalVector {
 
     /**
      * 2つのベクトルを比較し、等しければtrueを返します。
-     * @param vector 比較するベクトル
+     * @param other 比較するベクトル
      */
-    is(vector: Vector2 | Vector3): boolean;
+    is(other: Vector2 | Vector3): boolean;
 
     /**
      * ベクトルの長さを返します。

@@ -1,9 +1,8 @@
 # MultiDimensionalVector
 
-minecraftのScriptAPIにおいて三次元の計算のために使用することを想定された、
+minecraftのScriptAPIにおいて三次元の計算のために使用することを想定された以下2つのクラス
 - 多次元ベクトル
 - 三次元直方体範囲
-の2つのクラス。
 
 ## MultiDimensionalVector Class
 
@@ -106,7 +105,7 @@ onCircumference(center: Vector3, axis: Vector3, angle: number, radius?: number):
 定数ベクトルを取得します
 - name 各定数ベクトルと紐づけられた名称
 ```ts
-const<T extends keyof ConstantVectorMap>(name: T): ConstantVectorMap[T];
+const<T extends keyof ConstantSpatialVectorMap>(name: T): ConstantSpatialVectorMap[T];
 ```
 
 #### is
@@ -368,6 +367,58 @@ y: MultiDimensionalVector;
 ローカル座標のz成分ベクトル
 ```ts
 z: MultiDimensionalVector;
+```
+
+## ConstantSpatialVectorMap
+
+### properties
+
+#### up
+(0, 1, 0)
+```ts
+readonly up: MultiDimensionalVector;
+```
+
+#### down
+(0, -1, 0)
+```ts
+readonly down: MultiDimensionalVector;
+```
+
+#### forward
+(0, 0, 1)
+```ts
+readonly forward: MultiDimensionalVector;
+```
+
+#### back
+(0, 0, -1)
+```ts
+readonly back: MultiDimensionalVector;
+```
+
+#### right
+(1, 0, 0)
+```ts
+readonly forward: MultiDimensionalVector;
+```
+
+#### left
+(-1, 0, 0)
+```ts
+readonly forward: MultiDimensionalVector;
+```
+
+#### zero
+(0, 0, 0)
+```ts
+readonly one: MultiDimensionalVector;
+```
+
+#### one
+(1, 1, 1)
+```ts
+readonly one: MultiDimensionalVector;
 ```
 
 ## CuboidArea Class

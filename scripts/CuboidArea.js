@@ -7,8 +7,8 @@ import { Numeric } from "./utils/index";
 export class CuboidArea {
     constructor(a, b) {
         if (MultiDimensionalVector.isVector3(a) && MultiDimensionalVector.isVector3(b)) {
-            this.min = new MultiDimensionalVector(Vector.min(a, b));
-            this.max = new MultiDimensionalVector(Vector.max(a, b));
+            this.min = new MultiDimensionalVector(a).calc(b, Math.min);
+            this.max = new MultiDimensionalVector(a).calc(b, Math.max);
         }
         else if (MultiDimensionalVector.isVector3(a) && Numeric.isNumeric(b)) {
             if (b < 0) {
@@ -18,7 +18,7 @@ export class CuboidArea {
             this.min = new MultiDimensionalVector(a).subtract({ x: b, y: b, z: b });
             this.max = new MultiDimensionalVector(a).add({ x: b, y: b, z: b });
         }
-        else throw new Error("引数が無効です");
+        else throw new TypeError();
     }
 
     get length() {
@@ -50,7 +50,7 @@ export class CuboidArea {
 
     move(direction) {
         if (!MultiDimensionalVector.isVector3(direction)) {
-            throw new TypeError("Unexpected type passed to function argument[0].");
+            throw new TypeError();
         }
 
         this.min = this.min.add(direction);
@@ -60,7 +60,9 @@ export class CuboidArea {
     }
 
     isInside(vector) {
-        if (!MultiDimensionalVector.isVector3(vector)) throw new Error("引数の型はVector3である必要があります");
+        if (!MultiDimensionalVector.isVector3(vector)) {
+            throw new TypeError();
+        }
 
         const { x, y, z } = vector;
         const { x: minX, y: minY, z: minZ } = this.min;
@@ -85,8 +87,12 @@ export class CuboidArea {
     }
 
     outline(step = 0.5) {
-        if (!Numeric.isNumeric(step)) throw new Error("引数の型はnumberである必要があります");
-        if (step <= 0) throw new Error("引数は0より大きい値である必要があります");
+        if (!Numeric.isNumeric(step)) {
+            throw new TypeError();
+        }
+        if (step <= 0) {
+            throw new RangeError("引数は0より大きい値である必要があります");
+        }
 
         const { min, max } = this;
         const vectors = [];
@@ -107,8 +113,12 @@ export class CuboidArea {
     }
 
     getInsideEntities(dimension = world.getDimension("overworld"), options = {}) {
-        if (!(dimension instanceof Dimension)) throw new Error("引数dimensionの型はDimensionである必要があります");
-        if (typeof options !== "object") throw new Error("引数optionsの型はobjectである必要があります");
+        if (!(dimension instanceof Dimension)) {
+            throw new TypeError();
+        }
+        if (typeof options !== "object") {
+            throw new TypeError();
+        }
 
         const list = dimension.getEntities({ ...options, location: this.min, volume: new BlockAreaSize(this.length.x, this.length.y, this.length.z) });
 
@@ -116,7 +126,9 @@ export class CuboidArea {
     }
 
     getInsideBlocks(dimension = world.getDimension("overworld")) {
-        if (!(dimension instanceof Dimension)) throw new Error("引数dimensionの型はDimensionである必要があります");
+        if (!(dimension instanceof Dimension)) {
+            throw new TypeError();
+        }
 
         const list = [];
 
