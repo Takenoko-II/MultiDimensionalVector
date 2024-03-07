@@ -21,7 +21,7 @@ z?: number | undefined;
 
 ### methods
 
-- static constructor
+#### static constructor
 ```ts
 constructor(x: number, y: number);
 
@@ -38,37 +38,37 @@ constructor(vector: Vector3);
 constructor(dimensionSize: number);
 ```
 
-- static from
+#### static from
 constructorと全く同じです
 ```ts
 from(略): MultiDimensionalVector;
 ```
 
-- static isVector
+#### static isVector
 Vector2かVector3の値が渡されるとtrueを返します
 ```ts
 isVector(value: any): boolean;
 ```
 
-- static isVector2
+#### static isVector2
 Vector2の値が渡されるとtrueを返します
 ```ts
 isVector(value: any): boolean;
 ```
 
-- static isVector3
+#### static isVector3
 Vector3の値が渡されるとtrueを返します
 ```ts
 isVector(value: any): boolean;
 ```
 
-- static getDirectionFromRotation
+#### static getDirectionFromRotation
 渡されたVector2を回転とみなし、その向きの三次元単位ベクトルを返します
 ```ts
 getDirectionFromRotation(rotation: Vector2): MultiDimensionalVector;
 ```
 
-- static onCircumference
+#### static onCircumference
 三次元空間上の円を作り、円周上の座標を取得します
 ```ts
 onCircumference(わすれた): MultiDimensionalVector;
