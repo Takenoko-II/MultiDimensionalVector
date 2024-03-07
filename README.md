@@ -223,13 +223,13 @@ round(): MultiDimensionalVector;
 ```
 
 #### abs
-各成分をその絶対値にしたベクトルを返します
+各成分をその絶対値にした新しいベクトルを返します
 ```ts
 abs(): MultiDimensionalVector;
 ```
 
 #### fill
-各成分を指定の値にしたベクトルを返します
+各成分を指定の値にした新しいベクトルを返します
 - value 任意の値
 ```ts
 fill(value: number): MultiDimensionalVector;
@@ -382,9 +382,39 @@ readonly max: MultiDimensionalVector;
 ```
 
 #### length
-直方体の三辺それぞれの長さ
+範囲をなす直方体の三辺それぞれの長さ
 ```
 readonly length: CuboidAreaLength;
 ```
 
+#### volume
+体積
+```ts
+readonly volume: number;
+```
+
+#### center
+範囲の中心となる座標
+```ts
+readonly center: MultiDimensionalVector;
+```
+
+#### isCube
+立方体か否か
+```ts
+readonly isCube: boolean;
+```
+
 ### methods
+
+#### static constructor
+直方体の範囲を作成します
+- vectorA 範囲の角
+- vectorB 範囲の角
+- center 範囲の中心
+- length 範囲の中心から6方向へ伸ばす長さ
+```ts
+constructor(vectorA: Vector3, vectorB: Vector3);
+
+constructor(center: Vector3, length: number);
+```
