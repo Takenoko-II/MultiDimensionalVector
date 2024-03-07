@@ -1,5 +1,10 @@
 # MultiDimensionalVector
 
+minecraftのScriptAPIにおいて三次元の計算のために使用することを想定された、
+- 多次元ベクトル
+- 三次元直方体範囲
+の2つのクラス。
+
 ## MultiDimensionalVector Class
 
 ### properties
@@ -326,7 +331,7 @@ reduce(callbackFn: (previousValue: number, currentValue: number, currentIndex: n
 toString(format?: string): string;
 ```
 
-## VectorDimensionSize
+## VectorDimensionSize Interface
 
 ### methods
 
@@ -343,7 +348,7 @@ get(): number;
 match(other: Vector2 | Vector3): boolean;
 ```
 
-## LocalAxes
+## LocalAxes Interface
 
 ### properties
 
@@ -365,7 +370,7 @@ y: MultiDimensionalVector;
 z: MultiDimensionalVector;
 ```
 
-## CuboidArea
+## CuboidArea Class
 
 ### properties
 
@@ -461,7 +466,7 @@ getInsideEntities(dimension?: Dimension, options?: EntityQueryOptions): Entity[]
 getInsideBlocks(dimension?: Dimension): Block[];
 ```
 
-## CuboidAreaLength
+## CuboidAreaLength Interface
 
 ### properties
 
