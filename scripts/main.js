@@ -1,42 +1,127 @@
-import { MultiDimensionalVector } from "./MultiDimensionalVector";
+import { MultiDimensionalVector } from "./MultiDimensionalVector.js";
 
 import { CuboidArea } from "./CuboidArea";
 
-// (1, 2)
-const vecA = new MultiDimensionalVector(1, 2);
+// 多次元ベクトルの作成
 
-// (-3, 1)
-const vecB = new MultiDimensionalVector({ x: -3, y: 1 });
+new MultiDimensionalVector(0, 3, -2.4); // { x: 0, y: 3, z: -2.4 }
 
-// (4, -12)
-const vecC = new MultiDimensionalVector([4, -12]);
+new MultiDimensionalVector([1, 2, 3]); // { x: 1, y: 2, z: 3 }
 
-// (0, 0)
-const vecD = new MultiDimensionalVector(2);
+new MultiDimensionalVector({ x: 4, y: 0 }); // { x: 4, y: 0 }
 
-// (-2, 3)
-const vecE = vecA.add(vecB);
+new MultiDimensionalVector(2); // { x: 0, y: 0 }
 
-// (3, 0)
-const vecF = vecC.subtract([1, -12]);
+MultiDimensionalVector.from(-1, -6); // { x: -1, y: -6 }
 
-// (0, -150)
-const vecG = vecF.multiply({ x: 0, y: 10 });
+MultiDimensionalVector.const("up") // { x: 0, y: 1, z: 0 }
 
-// (0.5, 1)
-const vecH = vecA.divide(2);
 
-// (-8, 27)
-const vecI = vecE.pow(3);
 
-// (0, 1)
-const vecJ = vecH.floor();
+// 多次元ベクトルの判定
 
-// (1, 1)
-const vecK = vecH.ceil();
+MultiDimensionalVector.isVector({ x: 1, y: 2 }); // true
 
-// (1, 1)
-const vecL = vecH.round();
+MultiDimensionalVector.isVector2({ x: 0, y: 0, z: 0 }); // false
 
-// (4, 12)
-const vecM = vecC.abs();
+MultiDimensionalVector.isVector3({ x: 0, y: -3, z: 11 }); // true
+
+
+
+// 多次元ベクトルから取得
+
+const vec = new MultiDimensionalVector(1, 2, -4);
+
+vec.getLength(); // sqrt(21)
+
+vec.getRotation(); // この三次元ベクトルの回転(向き)が返る
+
+vec.getLocalAxes(); // ローカル座標が { x: {...}, y: {...}, z: {...} } の形式で返る
+
+vec.clone(); // vecとまったく同じ数値が入ったベクトル
+
+vec.dimensionSize.get(); // 3
+
+
+
+// 多次元ベクトルの比較
+
+vec.dimensionSize.match({ x: 2, y: 0 }); // false
+
+vec.is({ x: 1, y: 2, z: -4 }); // true
+
+
+
+// 多次元ベクトルの編集
+
+vec.x = 0; // { x: 0, y: 2, z: -4 }
+
+vec.z = "hoge"; // { x: 0, y: 2, z: "hoge" }
+
+delete vec.y; // Error プロパティの削除はできないようになっている
+
+vec.isValid(); // zにstringが入っているのでfalse
+
+
+
+// 多次元ベクトルの計算
+
+const one = MultiDimensionalVector.const("one");
+
+one.add({ x: -1, y: -1, z: 0 }); // { x: 0, y: 0, z: 1 } oneは上書きしない
+
+one.subtract([1, 1, 1]); // { x: 0, y: 0, z: 0 }
+
+one.multiply(3); // { x: 3, y: 3, z: 3 }
+
+one.divide([2, 2, 4]) // { x: 0.5, y: 0.5, z: 0.25 }
+
+one.divide(0); // { x: Infinity, y: Infinity, z: Infinity }
+
+one.multiply(2).pow(3); // { x: 8, y: 8, z: 8 }
+
+one.getDistanceTo({ x: 3, y: 2, z: 1 }); // sqrt(6) 2つの距離
+
+one.getDirectionTo({ x: 0, y: 0, z: 1 }); // normalize({ x: -1, y: -1, z: 0 }) 自身から引数のベクトルへの方向
+
+MultiDimensionalVector.const("forward").getAngleBetween(MultiDimensionalVector.const("right")); // 90
+
+one.dot({ x: 2, y: 2, z: 2 }); // 6 2つの内積
+
+one.cross({ x: 4, y: 1, z: 2 }); // 2つの外積
+
+const dec = MultiDimensionalVector.from(1.6, -2.2);
+
+dec.floor(); // { x: 1, y: -3 }
+
+dec.ceil(); // { x: 2, y: -2 }
+
+dec.round(); // { x: 2, y: -3 }
+
+dec.abs(); // { x: 1.6, y: 2.2 }
+
+dec.fill(10); // { x: 10, y: 10 }
+
+dec.inverted(); // { x: -1.6, y: 2.2 }
+
+dec.normalized(); // 長さを1に変更(正規化)した新しいベクトル dへの上書きはしない
+
+dec.projection(one); // dからoneへの射影
+
+dec.rejection(one); // oneからdへの反射影
+
+dec.lerp({ x: 0, y: 0, z: 0 }, 0.5); // { x: 0.8, y: -1.1 } 線形補間
+
+dec.slerp({ x: 4, y: 1, z: 3 }); // 球面線形補間
+
+dec.map(component => component + 2); // { x: 3.6, y: 0.2 }
+
+dec.calc([-3, 0], Math.max); // { x: 1.6, y: 0 }
+
+dec.reduce((previous, current) => previous + current); // -0.4
+
+dec.toArray(); // [1.6, -2.2]
+
+dec.toString("<$c, $c, $c>"); // "<1.6, -2.2>"
+
+MultiDimensionalVector.getDirectionFromRotation({ x: 0, y: 0 }); // { x: 0, y: 0, z: 1 }

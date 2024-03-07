@@ -1,4 +1,4 @@
-import { BlockAreaSize, Dimension, Vector, world } from "@minecraft/server";
+import { BlockAreaSize, Dimension, world } from "@minecraft/server";
 
 import { MultiDimensionalVector } from "./MultiDimensionalVector";
 
