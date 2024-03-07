@@ -175,3 +175,140 @@ getRotation(): MultiDimensionalVector;
 ```ts
 add(addend: number | [number, number] | [number, number, number] | Vector2 | Vector3): MultiDimensionalVector;
 ```
+
+#### subtract
+別のベクトルとの引き算を行い、結果となる新しいベクトルを返します
+- subtrahend 引くベクトル
+```ts
+subtract(subtrahend: number | Vector2 | Vector3 | [number, number] | [number, number, number]): MultiDimensionalVector;
+```
+
+#### multiply
+別のベクトル・数との掛け算を行い、結果となる新しいベクトルを返します
+- multiplier 乗数
+```ts
+multiply(multiplier: number | Vector2 | Vector3 | [number, number] | [number, number, number]): MultiDimensionalVector;
+```
+
+#### divide
+別のベクトル・数との割り算を行い、結果となる新しいベクトルを返します
+- divisor 除数
+```ts
+divide(divisor: number | Vector2 | Vector3 | [number, number] | [number, number, number]): MultiDimensionalVector;
+```
+
+#### pow
+別のベクトル・数を指数として冪乗計算を行い、結果となる新しいベクトルを返します
+- exponent 指数
+```ts
+pow(exponent: number | Vector2 | Vector3 | [number, number] | [number, number, number]): MultiDimensionalVector;
+```
+
+#### floor
+各成分の小数点以下を切り捨てした新しいベクトルを返します
+```ts
+floor(): MultiDimensionalVector;
+```
+
+#### ceil
+各成分の小数点以下を切り上げした新しいベクトルを返します
+```ts
+ceil(): MultiDimensionalVector;
+```
+
+### round
+各成分の小数点以下を四捨五入した新しいベクトルを返します
+```ts
+round(): MultiDimensionalVector;
+```
+
+#### abs
+各成分をその絶対値にしたベクトルを返します。
+```ts
+abs(): MultiDimensionalVector;
+```
+
+#### fill
+各成分を指定の値にしたベクトルを返します。
+- value 任意の値
+```ts
+fill(value: number): MultiDimensionalVector;
+```
+
+#### dot
+別のベクトルとの内積を求めます。
+- other ベクトル
+```ts
+dot(other: Vector2 | Vector3): number;
+```
+    /**
+     * 別のベクトルとの外積を求めます。
+     * @param other ベクトル
+     */
+    cross(other: Vector3): MultiDimensionalVector;
+
+    /**
+     * このベクトルの別のベクトルへの射影ベクトルを求めます。
+     * @param other ベクトル
+     */
+    projection(other: Vector2 | Vector3): MultiDimensionalVector;
+
+    /**
+     * このベクトルの別のベクトルからの反射影ベクトルを求めます。
+     * @param other ベクトル
+     */
+    rejection(other: Vector2 | Vector3): MultiDimensionalVector;
+
+    /**
+     * endを終了位置とし、tを割合とした線形補間を返します。
+     * @param end 終了位置
+     * @param t 割合
+     */
+    lerp(end: Vector2 | Vector3, t: number): MultiDimensionalVector;
+
+    /**
+     * endを終了位置とし、sを割合とした球面線形補間を返します。
+     * @param end 終了位置
+     * @param s 割合
+     */
+    slerp(end: Vector2 | Vector3, s: number): MultiDimensionalVector;
+
+    /**
+     * 自身と成分の各値が同じベクトルを返します。
+     */
+    clone(): MultiDimensionalVector;
+
+    /**
+     * 自身をローカル座標のz成分とし、ローカル座標の各成分となる座標を取得します。
+     */
+    getLocalAxes(): LocalAxes;
+
+    /**
+     * 成分の各値を格納した配列を返します。
+     */
+    toArray(): [number, number] | [number, number, number];
+
+    /**
+     * 与えられた関数をベクトルの各成分に対して呼び出し、その結果から新しいベクトルを作成します。
+     * @param callbackFn 各成分に対して実行する関数
+     */
+    map(callbackFn: (component: number, key: "x" | "y" | "z") => number): MultiDimensionalVector;
+
+    /**
+     * 与えられた関数をベクトルの各成分に対して呼び出し、その結果から新しいベクトルを作成します。
+     * @param components コールバックに分解されて渡される値
+     * @param callbackFn 各成分に対して実行する関数
+     */
+    calc(components: number | Vector2 | Vector3 | [number, number] | [number, number, number], callbackFn: (a: number, b: number) => number): MultiDimensionalVector;
+
+    /**
+     * 配列化したベクトルのreduce関数に与えられた関数を渡します。
+     * @param callbackFn コールバック関数
+     */
+    reduce(callbackFn: (previousValue: number, currentValue: number, currentIndex: number, array: [number, number] | [number, number, number]) => number): number;
+
+    /**
+     * ベクトルを文字列化します。
+     * @param format 形式
+     */
+    toString(format?: string): string;
