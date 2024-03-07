@@ -16,7 +16,7 @@ y: number;
 
 - z
 ```ts
-z?: number | undefined;
+z?: number;
 ```
 
 ### methods
@@ -88,22 +88,54 @@ getDirectionFromRotation(rotation: Vector2): MultiDimensionalVector;
 onCircumference(center: Vector3, axis: Vector3, angle: number, radius?: number): MultiDimensionalVector;
 ```
 
-####static const
+#### static const
 定数ベクトルを取得します
 - name 各定数ベクトルと紐づけられた名称
 ```ts
 const<T extends keyof ConstantVectorMap>(name: T): ConstantVectorMap[T];
 ```
 
-####is
+#### is
 2つのベクトルが等しければtrueを返します
 - vector 比較するベクトル
 ```ts
 is(vector: Vector2 | Vector3): boolean;
 ```
 
-####isValid
+#### isValid
 成分にNaNでない数値型以外が含まれているとfalseを返します
 ```ts
 isValid(): boolean;
+```
+
+#### getLength
+ベクトルの長さを取得します
+```ts
+getLength(): number;
+```
+
+#### setLength
+長さを変更した新しいベクトルを返します
+デフォルト値は1
+- length ベクトルの長さ
+```ts
+setLength(length?: number): MultiDimensionalVector;
+```
+
+#### normalized
+正規化(単位ベクトル化)した新しいベクトルを返します
+```ts
+normalized(): MultiDimensionalVector;
+```
+
+#### inverted
+向きを逆にした新しいベクトルを返します
+```ts
+inverted(): MultiDimensionalVector;
+```
+
+#### getAngleBetween
+別のベクトルと自身がなす角の大きさを返します
+```ts
+getAngleBetween(vector: Vector2 | Vector3): number;
 ```
