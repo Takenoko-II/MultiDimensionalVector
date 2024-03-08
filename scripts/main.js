@@ -106,9 +106,9 @@ dec.inverted(); // { x: -1.6, y: 2.2 }
 
 dec.normalized(); // 長さを1に変更(正規化)した新しいベクトル dへの上書きはしない
 
-dec.projection(one); // dからoneへの射影
+dec.projection(one); // decからoneへの射影
 
-dec.rejection(one); // oneからdへの反射影
+dec.rejection(one); // oneからdecへの反射影
 
 dec.lerp({ x: 0, y: 0, z: 0 }, 0.5); // { x: 0.8, y: -1.1 } 線形補間
 
