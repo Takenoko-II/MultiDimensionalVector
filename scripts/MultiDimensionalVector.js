@@ -494,14 +494,14 @@ export class MultiDimensionalVector {
         else throw new TypeError("引数が無効です");
 
         if (Numeric.isNumeric(a) && b === undefined && c === undefined) {
-            return this.map(value => callbackFn(value, a));
+            return this.map((value, key) => callbackFn(value, a, key));
         }
         else if ((Numeric.isNumeric(a) && Numeric.isNumeric(b)) && (Numeric.isNumeric(c) || c === undefined)) {
             return this.map((value, key) => {
                 switch (key) {
-                    case "x": return callbackFn(value, a);
-                    case "y": return callbackFn(value, b);
-                    case "z": return callbackFn(value, c);
+                    case "x": return callbackFn(value, a, key);
+                    case "y": return callbackFn(value, b, key);
+                    case "z": return callbackFn(value, c, key);
                 }
             });
         }
@@ -511,15 +511,15 @@ export class MultiDimensionalVector {
             }
             else return this.map((value, key) => {
                 switch (key) {
-                    case "x": return callbackFn(value, a[0]);
-                    case "y": return callbackFn(value, a[1]);
-                    case "z": return callbackFn(value, a[2]);
+                    case "x": return callbackFn(value, a[0], key);
+                    case "y": return callbackFn(value, a[1], key);
+                    case "z": return callbackFn(value, a[2], key);
                 }
             });
         }
         else if ((MultiDimensionalVector.isVector2(a) || MultiDimensionalVector.isVector3(a)) && b === undefined && c === undefined) {
             if (this.dimensionSize.match(a)) {
-                return this.map((component, key) => callbackFn(component, a[key]));
+                return this.map((component, key) => callbackFn(component, a[key], key));
             }
             else throw new TypeError("次元が一致していません : " + a);
         }
@@ -583,6 +583,10 @@ export class MultiDimensionalVector {
     }
 
     static onCircumference(center, axis, angle, radius = 1) {
+        if (!(this.isVector3(center) && this.isVector3(axis) && Numeric.isNumeric(angle) && Numeric.isNumeric(radius))) {
+            throw new TypeError();
+        }
+
         if (axis.x === 0) {
             axis.x = 1e-4;
         }
@@ -596,7 +600,11 @@ export class MultiDimensionalVector {
     }
 
     static const(name) {
-        const ConstantVectorMap = new Map([
+        if (typeof name !== "string") {
+            throw new TypeError();
+        }
+
+        const ConstantSpatialVectorMap = new Map([
             ["up", [0, 1, 0]],
             ["down", [0, -1, 0]],
             ["forward", [0, 0, 1]],
@@ -606,6 +614,6 @@ export class MultiDimensionalVector {
             ["zero", [0, 0, 0]],
             ["one", [1, 1, 1]]
         ]);
-        return new this(ConstantVectorMap.get(name));
+        return new this(ConstantSpatialVectorMap.get(name));
     }
 }

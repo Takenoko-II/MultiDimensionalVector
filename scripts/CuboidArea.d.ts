@@ -82,6 +82,8 @@ export class CuboidArea {
      * @param dimension 参照するディメンション
      */
     getInsideBlocks(dimension?: Dimension): Block[];
+
+    static readonly prototype: CuboidArea;
 }
 
 interface CuboidAreaLength {

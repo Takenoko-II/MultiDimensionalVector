@@ -248,7 +248,7 @@ export class MultiDimensionalVector {
      * @param components コールバックに分解されて渡される値
      * @param callbackFn 各成分に対して実行する関数
      */
-    calc(components: number | Vector2 | Vector3 | [number, number] | [number, number, number], callbackFn: (a: number, b: number) => number): MultiDimensionalVector;
+    calc(components: number | Vector2 | Vector3 | [number, number] | [number, number, number], callbackFn: (a: number, b: number, key: "x" | "y" | "z") => number): MultiDimensionalVector;
 
     /**
      * 配列化したベクトルのreduce関数に与えられた関数を渡します。

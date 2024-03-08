@@ -125,3 +125,39 @@ dec.toArray(); // [1.6, -2.2]
 dec.toString("<$c, $c, $c>"); // "<1.6, -2.2>"
 
 MultiDimensionalVector.getDirectionFromRotation({ x: 0, y: 0 }); // { x: 0, y: 0, z: 1 }
+
+MultiDimensionalVector.onCircumference({ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 1 }, 0); // 円周上の座標
+
+
+
+// 直方体範囲の作成
+
+const a = new CuboidArea({ x: -2, y: -2, z: -2 }, { x: 4, y: 0, z: 1 });
+
+const b = new CuboidArea({ x: 0, y: 0, z: 0 }, 3);
+
+a.min; // { x: -2, y: -2, z: -2 }
+
+a.max; // { x: 4, y: 0, z: 1 }
+
+b.volume; // 6 * 6 * 6
+
+b.isCube; // true
+
+a.length.z; // 3
+
+a.center; // { x: 1, y: -1, z: -0.5 }
+
+a.isInside({ x: 1, y: 0, z: 1 }); // true
+
+b.move({ x: 5, y: 0, z: 0 }); // x+に5m移動 bは上書きしない
+
+a.outline(); // 外枠の座標の配列を取得
+
+a.align(); // 座標の表示に合うように整形 aは上書きしない
+
+a.getInsideEntities().forEach(entity => entity.remove()); // aの中のentity消す
+
+for (const block of b.getInsideBlocks()) {
+    block.setType("minecraft:air"); // bの中空気にする
+}
