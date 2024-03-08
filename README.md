@@ -429,6 +429,7 @@ returns string
 ```ts
 get(): number;
 ```
+returns number
 
 #### match
 別のベクトルと次元が一致していた場合trueを返します
@@ -436,6 +437,7 @@ get(): number;
 ```ts
 match(other: Vector2 | Vector3): boolean;
 ```
+returns boolean
 
 ## LocalAxes Interface
 
@@ -528,6 +530,13 @@ readonly one: MultiDimensionalVector;
 
 ### properties
 
+- [min](#min)
+- [max](#max)
+- [length](#length)
+- [volume](#volume)
+- [center](#center)
+- [isCube](#iscube)
+
 #### min
 範囲内の最小の座標
 ```
@@ -566,6 +575,13 @@ readonly isCube: boolean;
 
 ### methods
 
+- [move](#move)
+- [isInside](#isinside)
+- [align](#align)
+- [outline](#outline)
+- [getInsideEntities](#getinsideentities)
+- [getinsideBlocks](#getinsideblocks)
+
 #### static constructor
 直方体の範囲を作成します
 - vectorA 範囲の角
@@ -584,6 +600,7 @@ constructor(center: Vector3, length: number);
 ```ts
 move(direction: Vector3): CuboidArea;
 ```
+returns [CuboidArea](#cuboidarea-class)
 
 #### isInside
  座標が範囲内にあるかどうかを返します
@@ -591,12 +608,14 @@ move(direction: Vector3): CuboidArea;
 ```ts
 isInside(vector: Vector3): boolean;
 ```
+returns boolean
 
 #### align
  範囲の小数点以下を切り捨て・切り上げ、「座標の表示」に合った結果を返すように整形します
 ```ts
 align(): CuboidArea;
 ```
+returns [CuboidArea](#cuboidarea-class)
 
 #### outline
  範囲の外枠を取得します
@@ -604,6 +623,7 @@ align(): CuboidArea;
 ```ts
 outline(step?: number): MultiDimensionalVector[];
 ```
+returns returns [MultiDimensionalVector](#multidimensionalvector-class)[]
 
 #### getInsideEntities
  範囲内のエンティティをすべて取得します
@@ -612,6 +632,7 @@ outline(step?: number): MultiDimensionalVector[];
 ```ts
 getInsideEntities(dimension?: Dimension, options?: EntityQueryOptions): Entity[];
 ```
+returns Entity[]
 
 #### getInsideBlocks
  範囲内のブロックをすべて取得します
@@ -619,10 +640,15 @@ getInsideEntities(dimension?: Dimension, options?: EntityQueryOptions): Entity[]
 ```ts
 getInsideBlocks(dimension?: Dimension): Block[];
 ```
+returns Block[]
 
 ## CuboidAreaLength Interface
 
 ### properties
+
+- [x](#x-2)
+- [y](#y-2)
+- [z](#z-2)
 
 #### x
 x軸方向の辺の長さ
