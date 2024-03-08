@@ -623,7 +623,7 @@ returns [CuboidArea](#cuboidarea-class)
 ```ts
 outline(step?: number): MultiDimensionalVector[];
 ```
-returns returns [MultiDimensionalVector](#multidimensionalvector-class)[]
+returns [MultiDimensionalVector](#multidimensionalvector-class)[]
 
 #### getInsideEntities
  範囲内のエンティティをすべて取得します
