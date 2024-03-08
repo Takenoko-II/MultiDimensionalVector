@@ -400,19 +400,19 @@ readonly back: MultiDimensionalVector;
 #### right
 (1, 0, 0)
 ```ts
-readonly forward: MultiDimensionalVector;
+readonly right: MultiDimensionalVector;
 ```
 
 #### left
 (-1, 0, 0)
 ```ts
-readonly forward: MultiDimensionalVector;
+readonly left: MultiDimensionalVector;
 ```
 
 #### zero
 (0, 0, 0)
 ```ts
-readonly one: MultiDimensionalVector;
+readonly zero: MultiDimensionalVector;
 ```
 
 #### one
