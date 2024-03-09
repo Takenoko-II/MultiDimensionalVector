@@ -534,17 +534,39 @@ export class MultiDimensionalVector {
         return this.toArray().reduce(callbackFn);
     }
 
-    toString(format = "($c, $c, $c)") {
-        const fixer = (x) => x === undefined ? "" : x.toFixed(1);
+    toString(format = "875ac3e3-b714-4bb3-ac9a-58c4b18ba664") {
+        const fixer = component => (component === undefined) ? "" : component.toFixed(1);
 
-        return format
-            .replace("$c", fixer(this.x))
-            .replace("$c", fixer(this.y))
-            .replace("$c", fixer(this.z))
-            .replace(/\$x/g, fixer(this.x))
-            .replace(/\$y/g, fixer(this.y))
-            .replace(/\$z/g, fixer(this.z))
-            .replace(/\$c/g, "");
+        switch (this.dimensionSize.get()) {
+            case 2: {
+                const text = format === "875ac3e3-b714-4bb3-ac9a-58c4b18ba664"
+                    ? "($c, $c)"
+                    : format;
+                
+                return text
+                .replace("$c", fixer(this.x))
+                .replace("$c", fixer(this.y))
+                .replace(/\$x/g, fixer(this.x))
+                .replace(/\$y/g, fixer(this.y))
+                .replace(/\$c/g, "");
+            }
+            case 3: {
+                const text = format === "875ac3e3-b714-4bb3-ac9a-58c4b18ba664"
+                    ? "($c, $c, $c)"
+                    : format;
+                
+                return text
+                .replace("$c", fixer(this.x))
+                .replace("$c", fixer(this.y))
+                .replace("$c", fixer(this.z))
+                .replace(/\$x/g, fixer(this.x))
+                .replace(/\$y/g, fixer(this.y))
+                .replace(/\$z/g, fixer(this.z))
+                .replace(/\$c/g, "");
+            }
+            default:
+                throw new Error();
+        }
     }
 
     static isVector(value) {
