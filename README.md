@@ -123,7 +123,7 @@ returns boolean
 Vector2の値が渡されるとtrueを返します
 - value 任意の値
 ```ts
-isVector(value: any): boolean;
+isVector2(value: any): boolean;
 ```
 returns boolean
 
@@ -131,7 +131,7 @@ returns boolean
 Vector3の値が渡されるとtrueを返します
 - value 任意の値
 ```ts
-isVector(value: any): boolean;
+isVector3(value: any): boolean;
 ```
 returns boolean
 
