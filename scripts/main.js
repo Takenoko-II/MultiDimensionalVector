@@ -1,6 +1,4 @@
-import { MultiDimensionalVector } from "./MultiDimensionalVector.js";
-
-import { CuboidArea } from "./CuboidArea";
+import { MultiDimensionalVector, CuboidArea } from "./utils/index.js";
 
 // 多次元ベクトルの作成
 
