@@ -159,3 +159,5 @@ a.getInsideEntities().forEach(entity => entity.remove()); // aの中のentity消
 for (const block of b.getInsideBlocks()) {
     block.setType("minecraft:air"); // bの中空気にする
 }
+
+const v = new MultiDimensionalVector(2);

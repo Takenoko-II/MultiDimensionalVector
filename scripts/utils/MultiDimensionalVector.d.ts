@@ -7,30 +7,46 @@ export class MultiDimensionalVector {
     /**
      * 二次元ベクトルを基に多次元ベクトルのインスタンスを作成します。
      * @param vector 二次元ベクトル
+     * 
+     * @example
+     * new MultiDimensionalVector({ x: 4, y: -3 }); // { x: 4, y: -3 }
      */
     constructor(vector: Vector2);
 
     /**
      * 三次元ベクトルを基に多次元ベクトルのインスタンスを作成します。
      * @param vector 三次元ベクトル
+     * 
+     * @example
+     * new MultiDimensionalVector({ x: 4, y: -3, z: 2 }); // { x: 4, y: -3, z: 2 }
      */
     constructor(vector: Vector3);
 
     /** 
      * 長さ2の配列を基に多次元ベクトルのインスタンスを作成します。
      * @param vector 二次元ベクトル
+     * 
+     * @example
+     * new MultiDimensionalVector([-2, 5]); // { x: -2, y: 5 }
      */
     constructor(vector: [number, number]);
 
     /**
      * 長さ3の配列を基に多次元ベクトルのインスタンスを作成します。
      * @param vector 三次元ベクトル
+     * 
+     * @example
+     * new MultiDimensionalVector([-2, 5, 0]); // { x: -2, y: 5, z: 0 }
      */
     constructor(vector: [number, number, number]);
 
     /**
      * 次元数を基に多次元ベクトルのインスタンスを作成します。
      * @param dimensionSize 次元の大きさ
+     * 
+     * @example
+     * new MultiDimensionalVector(2); // { x: 0, y: 0 }
+     * new MultiDimensionalVector(3); // { x: 0, y: 0, z: 0 }
      */
     constructor(dimensionSize: number);
 
@@ -38,6 +54,9 @@ export class MultiDimensionalVector {
      * x, yの二成分を基に多次元ベクトルのインスタンスを作成します。
      * @param x ベクトルのx成分
      * @param y ベクトルのy成分
+     * 
+     * @example
+     * new MultiDimensionalVector(1, 2); // { x: 1, y: 2 }
      */
     constructor(x: number, y: number);
 
@@ -46,40 +65,55 @@ export class MultiDimensionalVector {
      * @param x ベクトルのx成分
      * @param y ベクトルのy成分
      * @param z ベクトルのz成分
+     * 
+     * @example
+     * new MultiDimensionalVector(1, 2, 3); // { x: 1, y: 2, z: 3 }
      */
     constructor(x: number, y: number, z: number);
 
     /**
-     * x成分    
-     * このプロパティは削除不可能です。
+     * x成分
      */
     x: number;
 
     /**
-     * y成分    
-     * このプロパティは削除不可能です。
+     * y成分
      */
     y: number;
 
     /**
-     * z成分    
-     * このプロパティは削除不可能です。
+     * z成分
      */
     z?: number;
 
     /**
      * 次元の大きさ
+     * @example
+     * const vec = new MultiDimensionalVector(0, 3);
+     * vec.dimensionSize.get(); // 2
+     * 
+     * const vec2 = new MultiDimensionalVector(1, 8, -4);
+     * vec.dimensionSize.match(vec2); // false
      */
     readonly dimensionSize: VectorDimensionSize;
 
     /**
      * 各成分の値が数値であれば真を返します。
+     * @example
+     * const vec = new MultiDimensionalVector(-6, 2);
+     * vec.x = NaN;
+     * vec.isValid(); // false
      */
     isValid(): boolean;
 
     /**
      * 2つのベクトルを比較し、等しければtrueを返します。
      * @param other 比較するベクトル
+     * 
+     * @example
+     * const vec = new MultiDimensionalVector(3, -7, -1);
+     * vec.is({ x: 3, y: -7, z: -1 }); // true
+     * vec.is({ x: 3, y: -7 }); // false
      */
     is(other: Vector2 | Vector3): boolean;
 

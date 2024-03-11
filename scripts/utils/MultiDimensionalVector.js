@@ -161,10 +161,6 @@ export class MultiDimensionalVector {
         else throw new Error(`引数が正しくありません: ${a} ${b} ${c}`);
     }
 
-    x;
-    y;
-    z;
-
     #internal = {
         dimensionSize: undefined
     };
@@ -343,27 +339,34 @@ export class MultiDimensionalVector {
     }
 
     dot(other) {
-        if (!this.dimensionSize.match(other)) throw new Error("渡された値の型が正しくないか、次元が一致していません");
+        if (!this.dimensionSize.match(other)) throw new TypeError("渡された値の型が正しくないか、次元が一致していません");
+
         let product = 0;
         for (const component of ["x", "y", "z"]) {
-            if (this[component] === undefined) continue;
+            if (!["x", "y", "z"].includes(component)) {
+                continue;
+            }
             product += this[component] * other[component];
         }
+
         return product;
     }
 
     cross(other) {
-        if (!(this.dimensionSize.match(other) && this.dimensionSize.get() === 3)) throw new Error("この関数は3次元ベクトルにのみ対応しています");
+        if (!(this.dimensionSize.match(other) && this.dimensionSize.get() === 3)) {
+            throw new Error("この関数は3次元ベクトルにのみ対応しています");
+        }
+
         return new MultiDimensionalVector({
             x: this.y * other.z - this.z * other.y,
-            y: this.z * other.x - this.x * vector.z,
+            y: this.z * other.x - this.x * other.z,
             z: this.x * other.y - this.y * other.x
         });
     }
 
     projection(other) {
         if (!this.dimensionSize.match(other)) throw new TypeError();
-        
+
         const vec = new MultiDimensionalVector(other);
         return vec.multiply(vec.getLength() * this.getLength() / vec.getLength() ** 2);
     }
