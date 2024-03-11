@@ -357,11 +357,11 @@ export class MultiDimensionalVector {
             throw new Error("この関数は3次元ベクトルにのみ対応しています");
         }
 
-        return new MultiDimensionalVector({
-            x: this.y * other.z - this.z * other.y,
-            y: this.z * other.x - this.x * other.z,
-            z: this.x * other.y - this.y * other.x
-        });
+        return new MultiDimensionalVector(
+            this.y * other.z - this.z * other.y,
+            this.z * other.x - this.x * other.z,
+            this.x * other.y - this.y * other.x
+        );
     }
 
     projection(other) {
