@@ -155,7 +155,7 @@ onCircumference(center: Vector3, axis: Vector3, angle: number, radius?: number):
 returns [MultiDimensionalVector](#multidimensionalvector-class)
 
 #### static const
-定数ベクトルを取得します
+三次元定数ベクトルを取得します
 - name 各定数ベクトルと紐づけられた名称
 ```ts
 const<T extends keyof ConstantSpatialVectorMap>(name: T): ConstantSpatialVectorMap[T];

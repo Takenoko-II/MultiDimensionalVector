@@ -119,6 +119,8 @@ export class MultiDimensionalVector {
 
     /**
      * ベクトルの長さを返します。
+     * @example
+     * new MultiDimensionalVector(3, -4).getLength(); // 5
      */
     getLength(): number;
 
@@ -126,30 +128,49 @@ export class MultiDimensionalVector {
      * ベクトルの長さを変更した新しいベクトルを返します。    
      * 長さが指定されなかった場合単位ベクトルになります。
      * @param length ベクトルの長さ
+     * 
+     * @example
+     * const vec = new MultiDimensionalVector(0, 2);
+     * vec.setLength(); // { x: 0, y:1 }
+     * vec.setLength(-4); // { x: 0, y: -4 }
      */
     setLength(length?: number): MultiDimensionalVector;
 
     /**
      * ベクトルの長さを1にした新しいベクトルを返します。
+     * @example
+     * new MultiDimensionalVector(4, 3).normalized(); // { x: 0.8, y: 0.6 }
      */
     normalized(): MultiDimensionalVector;
 
     /**
      * ベクトルの向きを逆にした新しいベクトルを返します。
+     * @example
+     * new MultiDimensionalVector(10, -4, 9).inverted(); // { x: -10, y: 4, z: -9 }
      */
     inverted(): MultiDimensionalVector;
 
     /**
      * 別のベクトルへの方向を返します。
-     * @param vector 対象のベクトル
+     * @param other ベクトル
+     * 
+     * @example
+     * const vec1 = new MultiDimensionalVector(1, 1);
+     * const vec2 = new MultiDimensionalVector(0, 0);
+     * vec1.getDirectionTo(vec2); // { x: -0.5, y: -0.5 }
      */
-    getDirectionTo(vector: Vector2 | Vector3): MultiDimensionalVector;
+    getDirectionTo(other: Vector2 | Vector3): MultiDimensionalVector;
 
     /**
      * 別のベクトルとの距離を返します。
-     * @param vector 対象のベクトル
+     * @param other ベクトル
+     * 
+     * @example
+     * const zero = new MultiDimensionalVector(0, 0);
+     * const vec = new MultiDimensionalVector(3, 4);
+     * zero.getDistanceTo(vec); // 5
      */
-    getDistanceTo(vector: Vector2 | Vector3): number;
+    getDistanceTo(other: Vector2 | Vector3): number;
 
     /**
      * ベクトルの回転を返します。

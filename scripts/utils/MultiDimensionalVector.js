@@ -245,29 +245,22 @@ export class MultiDimensionalVector {
         return this.multiply(-1);
     }
 
-    getDirectionTo(vector) {
-        if (MultiDimensionalVector.isVector2(vector) && this.#internal.dimensionSize === 2 || MultiDimensionalVector.isVector3(vector) && this.#internal.dimensionSize === 3) {
-            const difference = this.clone();
-
-            for (const component of Object.getOwnPropertyNames(this)) {
-                if (!["x", "y", "z"].includes(component)) {
-                    continue;
-                }
-
-                difference[component] = vector[component] - this[component];
-            }
-
-            return difference.setLength();
-        }
-        else throw new Error("渡された値がベクトルではないか、次元が一致していません");
-    }
-
-    getDistanceTo(vector) {
-        if (!this.dimensionSize.match(vector)) {
+    getDirectionTo(other) {
+        if (!this.dimensionSize.match(other)) {
             throw new TypeError("渡された値がベクトルではないか、次元が一致していません");
         }
 
-        return Math.sqrt((this.x - vector.x) ** 2 + (this.y - vector.y) ** 2 + ((this.z - vector.z) ?? 0) ** 2);
+        return new MultiDimensionalVector(other)
+            .subtract(this)
+            .normalized();
+    }
+
+    getDistanceTo(other) {
+        if (!this.dimensionSize.match(other)) {
+            throw new TypeError("渡された値がベクトルではないか、次元が一致していません");
+        }
+
+        return Math.sqrt(this.reduce(other, (a, b) => (a - b) ** 2));
     }
 
     getRotation() {
