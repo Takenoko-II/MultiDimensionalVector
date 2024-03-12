@@ -260,7 +260,7 @@ export class MultiDimensionalVector {
             throw new TypeError("渡された値がベクトルではないか、次元が一致していません");
         }
 
-        return Math.sqrt(this.reduce(other, (a, b) => (a - b) ** 2));
+        return Math.sqrt(this.calc(other, (a, b) => (a - b) ** 2).reduce((a, b) => a + b));
     }
 
     getRotation() {
